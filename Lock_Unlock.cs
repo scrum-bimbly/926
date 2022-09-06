@@ -5,6 +5,7 @@ using UnityEngine;
 public class Lock_Unlock : MonoBehaviour
 {
     private BoxCollider2D BoxColl;
+    private Renderer Rend;
     public Player_Controller playcon;
     public bool locked = true;
 
@@ -12,6 +13,7 @@ public class Lock_Unlock : MonoBehaviour
     void Start()
     {
         BoxColl = GetComponent<BoxCollider2D>();
+        Rend = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -23,7 +25,26 @@ public class Lock_Unlock : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                if (locked == false)
+                {
+                    locked = true;
+                }
+                else
+                {
+                    locked = false;
+                }
             }
+        }
+        if (locked == true)
+        {
+            Rend.enabled = true;
+            BoxColl.enabled = true;
+            
+        }
+        else
+        {
+            Rend.enabled = false;
+            BoxColl.enabled = false;
         }
     }
 }
